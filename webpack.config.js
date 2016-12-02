@@ -23,6 +23,7 @@ module.exports = {
         path: __dirname + "/dist/",
         filename: "bundle.js"
     },
+    watch: true,
     plugins: debug ? [] : [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
