@@ -10,7 +10,7 @@ export default class Message extends React.Component {
             <div className="user-message__text">
                 <p>{this.props.message}</p>
             </div>
-            <div className="user-message__time"><span>22:35</span></div>
+            <div className="user-message__time"><span>{this.props.date}</span></div>
         </div>
             /*<div className="chat-block__window">
                 <div className="user-message">

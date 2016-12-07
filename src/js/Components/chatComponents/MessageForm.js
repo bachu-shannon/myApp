@@ -20,6 +20,13 @@ export default class MessageForm extends React.Component {
         this.setState({
             message: ''
         });
+
+        let date = new Date();
+        let H = date.getHours();
+        let M = date.getMinutes();
+        let time = H + ":" + M;
+        console.log(time);
+        this.props.renderDate(time);
     }
 
     render() {

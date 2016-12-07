@@ -1,6 +1,6 @@
 import React from "react";
 
-import ListUsers from'./chatComponents/listUsers'
+import ListUsers from './chatComponents/ListUsers'
 import MessageList from'./chatComponents/MessageList'
 import MessageForm from'./chatComponents/MessageForm'
 
@@ -31,13 +31,22 @@ export default class App extends React.Component {
         this.state = {
             users,
             messages: [],
+            date: ''
         }
     }
 
     pushMessage(message) {
         let messages = this.state.messages;
+        messages.push(message);
         this.setState({
-            messages: messages.push(message)
+            messages
+        });
+    }
+
+    renderDate(date) {
+        let time = date;
+        this.setState({
+            date: time
         });
     }
 
@@ -46,8 +55,8 @@ export default class App extends React.Component {
             <div className="app">
                 <ListUsers users={this.state.users} />
                 <div className="chat-block">
-                    <MessageList messages={this.state.messages} />
-                    <MessageForm pushMessage={this.pushMessage.bind(this)} />
+                    <MessageList messages={this.state.messages} date={this.state.date}/>
+                    <MessageForm pushMessage={this.pushMessage.bind(this)} renderDate={this.renderDate.bind(this)}/>
                 </div>
             </div>
         )

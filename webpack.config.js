@@ -1,32 +1,61 @@
-var debug = process.env.NODE_ENV !== "production";
+var IS_PRODUCTION = process.env.NODE_ENV == "production";
 var webpack = require('webpack');
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    context: path.join(__dirname, "src"),
-    devtool: debug ? "inline-sourcemap" : null,
-    entry: "./js/index.js",
+    entry: "./src/js/index.js",
+    devtool: IS_PRODUCTION ? null : "eval-cheap-source-map",
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        colors: true,
+        hot: true,
+        historyApiFallback: true
+    },
     module: {
         loaders: [
             {
-                test: /\.js?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'es2015', 'stage-0'],
-                    plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
-                }
+                test: /\.js$/,
+                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, 'src'),
+                ],
+                loaders: ['babel-loader'],
+                plugins: ['transform-runtime'],
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract(
+                    "style-loader", "css-loader"
+                )
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     },
     output: {
-        path: __dirname + "/dist/",
-        filename: "bundle.js"
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     watch: true,
-    plugins: debug ? [] : [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    ],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src/index.html'),
+            hash: true
+        }),
+        new ExtractTextPlugin('style.css', { allChunks: false }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new webpack.optimize.OccurenceOrderPlugin()
+    ]
 };
+
+if(IS_PRODUCTION) {
+    module.exports.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
+    )
+}
