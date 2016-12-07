@@ -30,32 +30,24 @@ export default class App extends React.Component {
         super();
         this.state = {
             users,
-            value: '',
             messages: [],
-            message: '',
         }
     }
 
-    changeValue(value) {
-        this.setState({value});
-    }
-
-    changeMessage(message) {
-        this.setState({message});
-    }
-
     pushMessage(message) {
-        this.state.messages.push({message});
-        console.log(this.state.messages);
+        let messages = this.state.messages;
+        this.setState({
+            messages: messages.push(message)
+        });
     }
 
     render() {
         return (
             <div className="app">
-                <ListUsers changeValue={this.changeValue.bind(this)} users={this.state.users} value={this.state.value}/>
+                <ListUsers users={this.state.users} />
                 <div className="chat-block">
-                    <MessageList renderMessage={this.changeMessage.bind(this)} messages={this.state.messages} />
-                    <MessageForm pushMessage={this.pushMessage.bind(this)} changeMessage={this.changeMessage.bind(this)} messages={this.state.messages} message={this.state.message} />
+                    <MessageList messages={this.state.messages} />
+                    <MessageForm pushMessage={this.pushMessage.bind(this)} />
                 </div>
             </div>
         )

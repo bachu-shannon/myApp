@@ -1,17 +1,30 @@
 import React from 'react';
-import _ from 'lodash';
 
 import User from './User';
 
 export default class ListUsers extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: ''
+        }
+    }
 
     renderUsers() {
-        return _.map(this.props.users, (user, index) => <User key={index} {...user} />)
+        let users = this.props.users;
+        if(this.state.value.length > 0) {
+            users = users.filter((user) => {
+                return user.name.toLowerCase().includes(this.state.value.toLowerCase())
+            });
+        }
+        return users.map((user, index) => <User key={index} {...user} />)
     }
 
     handleChange(ev) {
         let value = ev.target.value;
-        this.props.changeValue(value);
+        this.setState({
+            value
+        });
     }
 
     render() {
