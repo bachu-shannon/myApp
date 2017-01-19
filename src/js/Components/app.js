@@ -30,8 +30,7 @@ export default class App extends React.Component {
         super();
         this.state = {
             users,
-            messages: [],
-            date: ''
+            messages: []
         }
     }
 
@@ -41,22 +40,18 @@ export default class App extends React.Component {
         this.setState({
             messages
         });
+        console.log(this.state.messages);
     }
 
-    renderDate(date) {
-        let time = date;
-        this.setState({
-            date: time
-        });
-    }
+
 
     render() {
         return (
             <div className="app">
                 <ListUsers users={this.state.users} />
                 <div className="chat-block">
-                    <MessageList messages={this.state.messages} date={this.state.date}/>
-                    <MessageForm pushMessage={this.pushMessage.bind(this)} renderDate={this.renderDate.bind(this)}/>
+                    <MessageList messages={this.state.messages} />
+                    <MessageForm pushMessage={this.pushMessage.bind(this)} />
                 </div>
             </div>
         )

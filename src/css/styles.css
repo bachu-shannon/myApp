@@ -207,6 +207,17 @@ svg {
     text-transform: uppercase;
     letter-spacing: 2px;
     background: #a53636;
+    cursor: pointer;
+
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.send.send-off {
+    background: #757575 !important;
 }
 
 .notification {

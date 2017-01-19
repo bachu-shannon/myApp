@@ -1,6 +1,14 @@
 import React from 'react';
 
 export default class User extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            notificationCount: 0
+        }
+    }
+
+   /* renderNotification()*/
 
     render() {
         return(
@@ -19,7 +27,7 @@ export default class User extends React.Component {
                         </g>
                     </svg>
                 </div>*/}
-                <div className="notification">{this.props.notification}</div>
+                <div className="notification">{this.state.notificationCount}</div>
                 <div className="user-photo">
                     <img src={this.props.photo} alt=""/>
                 </div>
