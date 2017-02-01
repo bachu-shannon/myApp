@@ -1,8 +1,10 @@
 import React from "react";
 
-import ListUsers from './chatComponents/ListUsers'
-import MessageList from'./chatComponents/MessageList'
-import MessageForm from'./chatComponents/MessageForm'
+import RegistrationForm from './loginComponent/RegistarationUser';
+import LoginForm from './loginComponent/LoginUser';
+import ListUsers from './chatComponents/ListUsers';
+import MessageList from'./chatComponents/MessageList';
+import MessageForm from'./chatComponents/MessageForm';
 
 const users = [
     {
@@ -40,21 +42,23 @@ export default class App extends React.Component {
         this.setState({
             messages
         });
-        console.log(this.state.messages);
     }
-
-
 
     render() {
         return (
-            <div className="app">
-                <ListUsers users={this.state.users} />
-                <div className="chat-block">
-                    <MessageList messages={this.state.messages} />
-                    <MessageForm pushMessage={this.pushMessage.bind(this)} />
+            <div className="wrapper_app">
+                <div className="enter_block">
+                    <RegistrationForm users={this.state.users}/>
+                    <LoginForm />
+                </div>
+                <div className="app_chat">
+                    <ListUsers users={this.state.users} />
+                    <div className="chat-block">
+                        <MessageList messages={this.state.messages} />
+                        <MessageForm pushMessage={this.pushMessage.bind(this)} />
+                    </div>
                 </div>
             </div>
         )
     }
 }
-

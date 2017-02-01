@@ -8,8 +8,6 @@ export default class User extends React.Component {
         }
     }
 
-   /* renderNotification()*/
-
     render() {
         return(
             <div className="user">
