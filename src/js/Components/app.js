@@ -1,7 +1,7 @@
 import React from "react";
 
-import RegistrationForm from './loginComponent/RegistarationUser';
-import LoginForm from './loginComponent/LoginUser';
+import RegistrationForm from './loginComponents/RegistarationUser';
+import LoginForm from './loginComponents/LoginUser';
 import ListUsers from './chatComponents/ListUsers';
 import MessageList from'./chatComponents/MessageList';
 import MessageForm from'./chatComponents/MessageForm';

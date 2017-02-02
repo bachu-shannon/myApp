@@ -48,7 +48,7 @@ module.exports = {
             hash: true
         }),
         new ExtractTextPlugin('style.css', { allChunks: false }),
-        new webpack.HotModuleReplacementPlugin(),
+       /* new webpack.HotModuleReplacementPlugin(),*/
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.OccurenceOrderPlugin()
     ]
