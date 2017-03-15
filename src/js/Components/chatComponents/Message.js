@@ -5,7 +5,7 @@ export default class Message extends React.Component {
         return (
         <div className="user-message">
             <div className="user-photo">
-                <img src="http://www.dhresource.com/260x260s/f2-albu-g2-M01-83-D9-rBVaG1XMgriAebx6AAL4S26G0Sg228.jpg/50-pcs-despicable-me-golf-minions-plush-toy.jpg" alt=""/>
+                <img src={this.props.photo} alt=""/>
             </div>
             <div className="user-message__text">
                 <p>{this.props.message}</p>

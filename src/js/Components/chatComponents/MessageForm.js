@@ -29,6 +29,9 @@ export default class MessageForm extends React.Component {
     handleClick(ev) {
         ev.preventDefault();
 
+        let sendBtn = document.getElementsByClassName('send')[0];
+        sendBtn.classList.add('send-off');
+
         if(this.state.message != '') {
             this.props.pushMessage({text: this.state.message, date: this.state.date});
         }

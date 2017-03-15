@@ -17,7 +17,7 @@ export default class ListUsers extends React.Component {
                 return user.name.toLowerCase().includes(this.state.value.toLowerCase())
             });
         }
-        return users.map((user, index) => <User key={index} {...user} />)
+        return users.map((user, index) => <User key={index} {...user}/>)
     }
 
     handleChange(ev) {

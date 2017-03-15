@@ -55,6 +55,11 @@ div, input, textarea {
     opacity: 0;
 }
 
+.enter_block {
+    display: flex;
+    justify-content: center;
+}
+
 .form_enter {
     width: 350px;
     padding: 15px;
@@ -102,7 +107,7 @@ div, input, textarea {
 
 
 .app_chat {
-    display: none;
+    display: flex;
     width: 650px;
     height: 650px;
     padding: 3px;
@@ -144,8 +149,8 @@ div, input, textarea {
 }
 
 .user-photo {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -199,7 +204,7 @@ svg {
 }
 .messages {
     height: 80%;
-    padding: 10px 25px 25px 15px;
+    padding: 10px 15px 25px 15px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -214,7 +219,6 @@ svg {
 
 .user-message {
     display: flex;
-    align-items: center;
     margin-bottom: 20px;
 }
 .user-message .user-photo {

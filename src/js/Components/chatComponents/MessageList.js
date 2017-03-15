@@ -3,9 +3,13 @@ import  React from 'react';
 import Message from './Message'
 
 export default class MessageList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     renderMessage() {
         if(this.props.messages.length > 0){
-            return this.props.messages.map((message, index) => <Message key={index} message={message.text}  date={message.date}/>)
+            return this.props.messages.map((message, index) => <Message key={index} message={message.text} photo={this.props.photo} date={message.date}/>)
         }
     }
 

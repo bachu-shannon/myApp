@@ -1,16 +1,29 @@
 import React from 'react';
 
 export default class LoginUser extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            isActive: false
+        }
+    }
 
-    showRegistration(event) {
-        event.preventDefault();
-        let loginForm = document.getElementsByClassName('login_form')[0];
-        let registrationForm = document.getElementsByClassName('registration_form')[0];
+    getLogin(ev) {
+        let name = ev.target.value;
+        this.setState({
+            name
+        })
+    }
 
-        loginForm.classList.add('hide');
-        setTimeout(function() {
-            registrationForm.classList.add('show');
-        }, 1000);
+    logIn(ev) {
+        ev.preventDefault();
+        if(this.state.name != '') {
+            this.props.onLogin(this.state.name);
+        }
+        this.setState({
+            name: ''
+        });
     }
 
     render() {
@@ -18,10 +31,10 @@ export default class LoginUser extends React.Component {
             <div className="form_enter login_user">
                 <h2 className="form_title">Вход</h2>
                 <form className="login_user__form" id="js-login-form">
-                    <input type="text" name="login" placeholder="Login..."/>
-                    <input type="text" name="password" placeholder="Password..."/>
-                    <button type="submit" className="enter_user">Войти</button>
-                    <button className="btn_registration_user" onClick={this.showRegistration.bind(this)}>Регистрация</button>
+                    <input type="text" name="login" placeholder="Login..." onChange={this.getLogin.bind(this)}/>
+                    {/*<input type="password" name="password" placeholder="Password..."/>*/}
+                    <button type="submit" className="enter_user" onClick={this.logIn.bind(this)}>Войти</button>
+                    {/*<button className="btn_registration_user" onClick={this.showRegistration.bind(this)}>Регистрация</button>*/}
                 </form>
             </div>
         )
