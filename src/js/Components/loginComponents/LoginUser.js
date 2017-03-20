@@ -1,28 +1,37 @@
 import React from 'react';
+const io = require ('socket.io-client');
+const socket = io();
 
 export default class LoginUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            isActive: false
-        }
+            loginValue: '',
+        };
+        socket.on('login user', (user) => this.props.onLogin(user));
     }
 
     getLogin(ev) {
-        let name = ev.target.value;
+        let loginValue = ev.target.value;
         this.setState({
-            name
-        })
+            loginValue
+        });
     }
 
     logIn(ev) {
         ev.preventDefault();
-        if(this.state.name != '') {
-            this.props.onLogin(this.state.name);
+        const newUser = {
+            id: JSON.stringify(new Date()),
+            name: this.state.loginValue,
+            photo: 'http://vignette2.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest/scale-to-width-down/464?cb=20151119092211',
+            isActive: true
+        };
+        if(this.state.loginValue != '') {
+            /*this.props.onLogin(this.state.name);*/
+            socket.emit('login user', newUser);
         }
         this.setState({
-            name: ''
+            loginValue: ''
         });
     }
 

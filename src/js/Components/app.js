@@ -10,11 +10,7 @@ export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: {
-                name: '',
-                photo: 'http://vignette2.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest/scale-to-width-down/464?cb=20151119092211',
-                isActive: false
-            },
+            user: null,
             users: [],
             messages: []
         };
@@ -26,19 +22,20 @@ export default class App extends React.Component {
         this.setState({
             messages
         });
-
-        console.log(messages);
     }
 
-    onLogin(userName) {
+    onLogin(newUser) {
         let users = this.state.users;
         let user = this.state.user;
-        user.name = userName;
-        user.isActive = true;
-        users.push(user);
+        this.setState({
+            user: newUser
+        });
+        users.push(newUser);
         this.setState({
             users
         });
+
+        console.log(this.state.user);
     }
 
     render() {

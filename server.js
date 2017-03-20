@@ -19,26 +19,12 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 
-    function renderDate() {
-        function addZero(i) {
-            if (i < 10) {
-                i = "0" + i;
-            }
-            return i;
-        }
-        let date = new Date();
-        let H = date.getHours();
-        let M = addZero(date.getMinutes());
-
-        return H + ":" + M;
-    }
-
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
     });
 
-    socket.on('logIn', function(msg){
-        io.emit('logIn', msg);
+    socket.on('login user', function(user){
+        io.emit('login user', user);
     });
 
 });
