@@ -9,11 +9,11 @@ export default class User extends React.Component {
     }
 
     render() {
-        console.log(this.props.isActive);
+        const { isActive } = this.props;
         return(
             <div className="user">
                 {(() => {
-                    if (this.props.isActive) {
+                    if(isActive) {
                         return (
                             <div className="user-status active">
                                 <svg viewBox="0 0 508.52 508.52">
@@ -23,33 +23,34 @@ export default class User extends React.Component {
                                 </svg>
                             </div>
                         )
-                    }
-                })}
-
-                {/*<div className="user-status not-active">
-                    <svg viewBox="0 0 52 52">
-                        <g>
-                            <path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28h-25c-1.104,0-2-0.896-2-2  s0.896-2,2-2h25c1.104,0,2,0.896,2,2S39.604,28,38.5,28z" fill="#f52f53"/>
-                        </g>
-                    </svg>
-                </div>*/}
-
-                {(() => {
-                    if (this.props.notification !== 0) {
+                    }else{
                         return (
-                            <div className="notification">
-                                this.state.notificationCount
+                            <div className="user-status not-active">
+                                <svg viewBox="0 0 52 52">
+                                    <g>
+                                        <path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28h-25c-1.104,0-2-0.896-2-2  s0.896-2,2-2h25c1.104,0,2,0.896,2,2S39.604,28,38.5,28z" fill="#f52f53"/>
+                                    </g>
+                                </svg>
                             </div>
                         )
                     }
-                })}
+                })()}
+
+                {(() => {
+                    if (this.state.notificationCount != 0) {
+                        return (
+                            <div className="notification">
+                                {this.state.notificationCount}
+                            </div>
+                        )
+                    }
+                })()}
 
                 <div className="user-photo">
                     <img src={this.props.photo} alt=""/>
                 </div>
                 <div className="user-info">
                     <div className="user-info__name">{this.props.name}</div>
-                    <div className="user-info__status"></div>
                 </div>
             </div>
         )

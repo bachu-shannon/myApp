@@ -13,12 +13,11 @@ export default class App extends React.Component {
             user: {
                 name: '',
                 photo: 'http://vignette2.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest/scale-to-width-down/464?cb=20151119092211',
-                notification: 0,
                 isActive: false
             },
             users: [],
             messages: []
-        }
+        };
     }
 
     pushMessage(message) {
@@ -27,6 +26,8 @@ export default class App extends React.Component {
         this.setState({
             messages
         });
+
+        console.log(messages);
     }
 
     onLogin(userName) {
@@ -54,7 +55,7 @@ export default class App extends React.Component {
                     <ListUsers users={this.state.users} />
                     <div className="chat-block">
                         <MessageList messages={this.state.messages} photo={this.state.user.photo}/>
-                        <MessageForm pushMessage={this.pushMessage.bind(this)} />
+                        <MessageForm pushMessage={this.pushMessage.bind(this)} user={this.state.user}/>
                     </div>
                 </div>
             </div>

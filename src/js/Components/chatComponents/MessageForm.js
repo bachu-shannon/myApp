@@ -1,4 +1,6 @@
 import React from 'react';
+const io = require ('socket.io-client');
+const socket = io();
 
 export default class MessageForm extends React.Component {
     constructor(props) {
@@ -6,7 +8,9 @@ export default class MessageForm extends React.Component {
         this.state = {
             message: '',
             date: ''
-        }
+        };
+
+        socket.on('chat message', (msg) => this.props.pushMessage(msg));
     }
 
     handleChange(ev) {
@@ -33,7 +37,8 @@ export default class MessageForm extends React.Component {
         sendBtn.classList.add('send-off');
 
         if(this.state.message != '') {
-            this.props.pushMessage({text: this.state.message, date: this.state.date});
+            /*this.props.pushMessage();*/
+            socket.emit('chat message', {from: this.props.user.name, text: this.state.message, date: this.state.date});
         }
         this.setState({
             message: ''
